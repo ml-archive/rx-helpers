@@ -1,0 +1,19 @@
+
+ext {
+    bt_packaging = 'aar'
+    bt_name = 'retrofit-rx'
+}
+
+dependencies {
+    implementation libs.timber
+
+    api libs.kotlin
+    api libs.rx_kotlin
+    api libs.rx
+    api libs.rx_android
+
+    api libs.retrofit
+    api libs.retrofit_rx
+}
+
+apply from: '../kotlin-artifacts.gradle'

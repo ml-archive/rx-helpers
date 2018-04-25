@@ -1,0 +1,73 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    ext {
+        sdk = 27
+        minSdk = 19
+        kotlin_version = '1.2.40'
+        support_version = '27.1.1'
+
+        libs = [
+                kotlin                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+                rx                     : 'io.reactivex.rxjava2:rxjava:2.1.7',
+                timber                 : 'com.jakewharton.timber:timber:4.5.1',
+                rx_android             : 'io.reactivex.rxjava2:rxandroid:2.0.1',
+                rx_kotlin              : 'io.reactivex.rxjava2:rxkotlin:2.1.0',
+                retrofit               : 'com.squareup.retrofit2:retrofit:2.3.0',
+                retrofit_rx            : 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0',
+                support_v4             : "com.android.support:support-v4:${support_version}",
+                support_annotations    : "com.android.support:support-annotations:${support_version}"
+        ]
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+        classpath 'com.android.tools.build:gradle:3.1.2'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+repositories {
+    google()
+    jcenter()
+}
+
+subprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+
+    if (name == 'app') {
+        apply plugin: 'com.android.application'
+    } else {
+        apply plugin: 'com.android.library'
+    }
+    apply plugin: 'kotlin-android'
+    apply plugin: 'kotlin-kapt'
+
+    android {
+        compileSdkVersion sdk
+        defaultConfig {
+            minSdkVersion minSdk
+            targetSdkVersion sdk
+
+            vectorDrawables {
+                useSupportLibrary true
+            }
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+    }
+
+    kapt {
+        useBuildCache = true
+        mapDiagnosticLocations = true
+        correctErrorTypes = true
+    }
+}

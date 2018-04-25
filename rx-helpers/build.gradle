@@ -1,0 +1,17 @@
+ext {
+    bt_packaging = 'aar'
+    bt_name = 'rx-helpers'
+}
+
+dependencies {
+    implementation libs.timber
+
+    api libs.kotlin
+    api libs.rx_kotlin
+    api libs.rx
+    api libs.rx_android
+    api 'com.jakewharton.rxrelay2:rxrelay:2.0.0'
+    api libs.support_annotations
+}
+
+apply from: '../kotlin-artifacts.gradle'
