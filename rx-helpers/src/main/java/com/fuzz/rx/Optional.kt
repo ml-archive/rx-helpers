@@ -5,6 +5,8 @@ import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
 
+fun <T> optionalOf(value: T?) = Optional(value)
+
 /**
  * Description: A class with optional value. Useful for returning nullable type in RX. This class
  * is properly typed and is useful as a replacement for Java Optional class.
