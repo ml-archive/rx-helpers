@@ -49,23 +49,22 @@ fun <T> Single<out Result<out T>>.filterSuccessOut(): Maybe<T> =
 @Suppress("UNCHECKED_CAST")
 fun <T> Observable<Result<T>>.filterFailures(): Observable<Throwable> =
         filter { it.isError }
-                .map {
-                    val error = it.error()
-                    //logError("$error")
-                    error
-                }
+                .map { it.error() }
 
-/**
- * Filters out success state and maps it to the success type.
- */
+@Suppress("UNCHECKED_CAST")
+fun <T> Single<Result<T>>.filterFailures(): Maybe<Throwable> =
+        filter { it.isError }
+                .map { it.error() }
+
 @Suppress("UNCHECKED_CAST")
 fun <T> Observable<out Result<out T>>.filterFailuresOut(): Observable<Throwable> =
         filter { it.isError }
-                .map {
-                    val error = it.error()
-                    //logError("$error")
-                    error
-                }
+                .map { it.error() }
+
+@Suppress("UNCHECKED_CAST")
+fun <T> Single<out Result<out T>>.filterFailuresOut(): Maybe<Throwable> =
+        filter { it.isError }
+                .map { it.error() }
 
 /**
  * Do something on success state only.
