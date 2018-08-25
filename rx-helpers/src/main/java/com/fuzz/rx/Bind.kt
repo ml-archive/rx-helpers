@@ -7,8 +7,8 @@ import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.exceptions.OnErrorNotImplementedException
 import io.reactivex.functions.Consumer
-import io.reactivex.rxkotlin.OnErrorNotImplementedException
 import io.reactivex.rxkotlin.subscribeBy
 import timber.log.Timber
 
