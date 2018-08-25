@@ -1,6 +1,10 @@
 ext {
     bt_packaging = 'aar'
     bt_name = 'rx-helpers'
+    bt_siteUrl = 'https://github.com/fuzz-productions/rx-helpers'
+    bt_gitUrl = 'https://github.com/fuzz-productions/rx-helpers.git'
+    bt_licenseName = 'The MIT License'
+    bt_licenseUrl = 'http://opensource.org/licenses/MIT'
 }
 
 dependencies {
