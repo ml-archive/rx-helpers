@@ -1,6 +1,30 @@
+apply plugin: 'com.android.library'
+
 ext {
     bt_packaging = 'aar'
     bt_name = 'rx-helpers'
+}
+
+android {
+
+    buildTypes {
+        debug {
+            debuggable true
+        }
+    }
+}
+
+android.libraryVariants.all { variant ->
+    def bundleTask = tasks["bundle${name.capitalize()}Aar"]
+    println("Bundling variant ${name}")
+    if (name != "release") {
+        artifacts {
+            archives(bundleTask.archivePath) {
+                classifier name
+                builtBy bundleTask
+            }
+        }
+    }
 }
 
 dependencies {
