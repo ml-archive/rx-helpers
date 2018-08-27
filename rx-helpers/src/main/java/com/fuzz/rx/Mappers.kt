@@ -98,5 +98,30 @@ inline fun <T, R> Maybe<T>.filterFlatMap(
         crossinline filter: (T) -> Boolean,
         crossinline mapper: (T) -> R): Maybe<R> = filterFlatMapMaybe(filter) { mapper(it).asMaybe() }
 
+/**
+ * Only emits values of type [R] and returns an [Observable] of [R]. This is similar to [Observable.cast]
+ * except it is a safe and does not cause a [ClassCastException].
+ */
+inline fun <T, reified R : T> Observable<T>.filterTo(): Observable<R> =
+        filterFlatMap({ it is R }, { it as R })
 
+/**
+ * Only emits values of type [R] and returns a [Flowable] of [R]. This is similar to [Observable.cast]
+ * except it is a safe and does not cause a [ClassCastException].
+ */
+inline fun <T, reified R : T> Flowable<T>.filterTo(): Flowable<R> =
+        filterFlatMap({ it is R }, { it as R })
 
+/**
+ * Only emits values of type [R] and returns a [Maybe] of [R]. This is similar to [Observable.cast]
+ * except it is a safe and does not cause a [ClassCastException].
+ */
+inline fun <T, reified R : T> Single<T>.filterTo(): Maybe<R> =
+        filterFlatMap({ it is R }, { it as R })
+
+/**
+ * Only emits values of type [R] and returns a [Maybe] of [R]. This is similar to [Observable.cast]
+ * except it is a safe and does not cause a [ClassCastException].
+ */
+inline fun <T, reified R : T> Maybe<T>.filterTo(): Maybe<R> =
+        filterFlatMap({ it is R }, { it as R })
